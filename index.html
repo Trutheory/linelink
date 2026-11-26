@@ -11,7 +11,7 @@
       --pink-glow: #ff9ebb;
       --purple-sub: #b388eb;
       --bg-deep: #141024;
-      --glass-panel: rgba(24, 19, 42, 0.82);
+      --glass-panel: rgba(24, 19, 42, 0.88);
       --border-light: rgba(221, 170, 204, 0.45);
       --horror-red: #ff1e42;
       --horror-dark: #080103;
@@ -63,7 +63,7 @@
       justify-content: center;
       align-items: center;
       padding: 24px;
-      z-index: 25;
+      z-index: 50;
       text-align: center;
       background: radial-gradient(circle at 50% 25%, rgba(62, 42, 99, 0.45) 0%, rgba(12, 9, 23, 0.85) 100%);
       backdrop-filter: blur(4px);
@@ -186,7 +186,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 20;
+      z-index: 45;
       font-size: 12px;
     }
 
@@ -228,6 +228,12 @@
       justify-content: center;
       align-items: center;
       padding: 8px 0;
+      transition: opacity 0.3s ease;
+    }
+
+    body.choices-open .cg-viewport {
+      opacity: 0.14;
+      pointer-events: none;
     }
 
     .cg-frame {
@@ -279,6 +285,8 @@
 
     /* ================= Galgame 底部对话框与快捷系统栏 ================= */
     .vn-bottom {
+      position: relative;
+      z-index: 40;
       width: 100%;
       max-width: 560px;
       margin: 0 auto;
@@ -332,8 +340,8 @@
       backdrop-filter: blur(16px);
       border: 1px solid var(--border-light);
       border-radius: 16px;
-      padding: 18px 20px 32px;
-      min-height: 132px;
+      padding: 16px 20px 30px;
+      min-height: 124px;
       cursor: pointer;
       box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
       transition: background 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
@@ -341,7 +349,7 @@
 
     #vn-text {
       font-size: 15.5px;
-      line-height: 1.75;
+      line-height: 1.72;
       color: #fff;
       transition: color 0.8s ease;
     }
@@ -349,15 +357,15 @@
     .vn-cursor {
       position: absolute;
       right: 18px;
-      bottom: 10px;
+      bottom: 9px;
       font-size: 12px;
       color: var(--pink-main);
       animation: pulseDown 1.1s infinite;
     }
 
     @keyframes pulseDown {
-      0%, 100% { transform: translateY(0); opacity: 0.5; }
-      50% { transform: translateY(4px); opacity: 1; }
+      0%, 100% { transform: translateY(0); opacity: 0.55; }
+      50% { transform: translateY(3px); opacity: 1; }
     }
 
     /* ================= TRUE END 解锁后的：温柔渐变白粉主题 ================= */
@@ -469,7 +477,7 @@
     }
 
     body.true-light-mode .vn-textbox {
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.92);
       border-color: rgba(224, 122, 168, 0.55);
       box-shadow: 0 10px 30px rgba(224, 122, 168, 0.22);
     }
@@ -482,18 +490,16 @@
       color: #d66398;
     }
 
-    /* 白粉模式下的多选项弹窗与选项按钮 */
-    body.true-light-mode #choice-modal {
-      background: rgba(255, 238, 246, 0.76);
-    }
-
     body.true-light-mode .choice-header {
       color: #b84a82;
       font-weight: 700;
+      background: rgba(255, 255, 255, 0.78);
+      padding: 4px 14px;
+      border-radius: 20px;
     }
 
     body.true-light-mode .gal-option {
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(255, 234, 244, 0.94));
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(255, 234, 244, 0.95));
       border-color: rgba(224, 122, 168, 0.55);
       color: #4a2c40;
       box-shadow: 0 6px 20px rgba(224, 122, 168, 0.2);
@@ -510,7 +516,7 @@
     }
 
     body.true-light-mode .choice-sys-btn {
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.92);
       border-color: rgba(224, 122, 168, 0.5);
       color: #b84a82;
       box-shadow: 0 4px 12px rgba(224, 122, 168, 0.15);
@@ -521,7 +527,6 @@
       color: #fff;
     }
 
-    /* 白粉模式下的现实任务卡片 */
     body.true-light-mode #quest-modal {
       background: radial-gradient(circle at center, #fff5fa 0%, #f7d6e6 100%);
     }
@@ -639,17 +644,15 @@
       color: #ff8fa3 !important;
     }
     body.horror-mode .vn-textbox {
-      background: rgba(18, 2, 6, 0.92) !important;
+      background: rgba(18, 2, 6, 0.94) !important;
       border-color: var(--horror-red) !important;
     }
     body.horror-mode #vn-text {
       color: #fff !important;
     }
-    body.horror-mode #choice-modal {
-      background: rgba(12, 2, 4, 0.85) !important;
-    }
     body.horror-mode .choice-header {
       color: #ff4d6d !important;
+      background: rgba(28, 3, 9, 0.85) !important;
     }
     body.horror-mode .gal-option {
       background: rgba(28, 3, 9, 0.94) !important;
@@ -665,61 +668,65 @@
       color: #ff8fa3 !important;
     }
 
-    /* ================= 多选项分支遮罩层 ================= */
+    /* ================= 多选项分支区域（限定在对话框上方，绝不遮挡题目） ================= */
     #choice-modal {
       position: fixed;
-      inset: 0;
-      background: rgba(12, 9, 22, 0.78);
-      backdrop-filter: blur(8px);
+      top: 52px;
+      bottom: 184px;
+      left: 0;
+      right: 0;
       display: none;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 10px 18px;
       z-index: 30;
-      transition: background 0.8s ease;
+      overflow-y: auto;
     }
 
     #choice-modal.active {
       display: flex;
-      animation: fadeIn 0.35s ease;
+      animation: fadeIn 0.3s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .choice-header {
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--pink-main);
       font-family: monospace;
-      margin-bottom: 16px;
-      letter-spacing: 1px;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+      background: rgba(20, 16, 36, 0.78);
+      padding: 4px 12px;
+      border-radius: 16px;
     }
 
     .choice-list {
       width: 100%;
-      max-width: 400px;
+      max-width: 420px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 9px;
     }
 
     .gal-option {
       position: relative;
-      background: linear-gradient(90deg, rgba(42, 33, 68, 0.92), rgba(28, 22, 48, 0.92));
-      border: 1px solid rgba(221, 170, 204, 0.5);
+      background: linear-gradient(90deg, rgba(42, 33, 68, 0.95), rgba(28, 22, 48, 0.95));
+      border: 1px solid rgba(221, 170, 204, 0.55);
       color: #fff;
-      padding: 14px 18px;
+      padding: 11px 16px;
       border-radius: 12px;
-      font-size: 14.5px;
+      font-size: 14px;
       text-align: left;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
       transition: transform 0.15s, border-color 0.2s, background 0.8s ease, color 0.8s ease;
     }
 
@@ -734,22 +741,23 @@
     .opt-diamond {
       color: var(--pink-main);
       font-size: 12px;
+      flex-shrink: 0;
     }
 
     .choice-sys-bar {
-      margin-top: 22px;
+      margin-top: 12px;
       display: flex;
       gap: 12px;
       justify-content: center;
     }
 
     .choice-sys-btn {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(24, 19, 42, 0.88);
       border: 1px solid rgba(221, 170, 204, 0.45);
       color: var(--pink-main);
       font-family: monospace;
-      font-size: 12px;
-      padding: 7px 16px;
+      font-size: 11.5px;
+      padding: 6px 14px;
       border-radius: 20px;
       cursor: pointer;
       transition: 0.2s;
@@ -771,7 +779,7 @@
       align-items: center;
       padding: 22px;
       text-align: center;
-      z-index: 35;
+      z-index: 55;
     }
 
     #quest-modal.active {
@@ -942,7 +950,7 @@
       border-bottom: 1px dashed rgba(255,255,255,0.1);
     }
 
-    /* ================= 终极重力红字崩溃层 ================= */
+    /* ================= 红字崩溃层 ================= */
     #gravity-final {
       position: fixed;
       inset: 0;
@@ -1051,7 +1059,7 @@
       <button class="menu-btn primary" onclick="startNewGame()">▶ START // 开始观测</button>
       <button class="menu-btn" onclick="openSysModal('load')">📂 LOAD // 读取存档</button>
       <button class="menu-btn extra-unlocked" id="btn-ramblings" onclick="openRamblings()">
-        ✦ EXTRA // 我的碎碎念
+        ✦ EXTRA // 一点碎碎念
       </button>
     </div>
     <button class="reset-timeline-btn" id="btn-reset-timeline" onclick="handleResetTimeline()">
@@ -1099,7 +1107,7 @@
     </div>
   </div>
 
-  <!-- 多选项分支弹窗 -->
+  <!-- 多选项分支（位于对话框上方，不遮挡底部题目） -->
   <div id="choice-modal">
     <div class="choice-header" id="choice-prompt">✦ 请选择你的回应（建议先 SAVE 存档）✦</div>
     <div class="choice-list" id="choice-list"></div>
@@ -1114,17 +1122,17 @@
     <div class="quest-card">
       <div class="radar-icon">📍</div>
       <div style="font-family:monospace; font-size:12px; color:#ff9ebb; margin-bottom:6px;">
-        [ REAL-WORLD SYNC // 次元壁突破 ]
+        [ REAL-WORLD SYNC // 虚拟世界の突破 ]
       </div>
       <h2 style="font-size:20px; margin-bottom:12px;">主线任务：下楼到外面查看情况</h2>
       <p style="font-size:14px; line-height:1.75; color:#e2d8f0;" id="quest-location-text">
-        虚拟屏幕里的所有前置选项你都选对了。<br>
-        现在，请拿着手机<strong>下楼走到外面</strong>，<br>
-        有人正带着一份专属于你的礼物在等你。
+        虚拟屏幕里的所有前置选项你都选对了，哦没得托！~<br>
+        现在，请带着手机<strong>下楼走到外面</strong>，<br>
+        有人正在等你。
       </p>
       <div class="lock-banner">
         🔒 剧情已锁定：未到达目的地无法进行下一个剧情<br>
-        （请在见到本人后，由你自己手动点击下方按钮）
+        （请到达地点后，再手动点击下方按钮）千万不要提前按！
       </div>
       <button class="unlock-btn" onclick="completeRealWorldQuest()">
         我已到达目的地 · 解锁最终剧情
@@ -1143,18 +1151,18 @@
     </div>
   </div>
 
-  <!-- 通关特典：我的碎碎念弹窗 -->
+  <!-- 通关特典：碎碎念 -->
   <div id="ramblings-modal">
     <div class="sys-panel">
       <div class="sys-title-row">
-        <strong style="color:#d66398;">✦ EXTRA // 我的碎碎念</strong>
+        <strong style="color:#d66398;">✦ EXTRA // 碎碎念</strong>
         <button class="q-btn" onclick="closeRamblings()">✕ 返回首页</button>
       </div>
       <div class="ramblings-content" id="ramblings-body"></div>
     </div>
   </div>
 
-  <!-- 终极重力系红字崩溃 -->
+  <!-- 终极红字崩溃 -->
   <div id="gravity-final">
     <div class="gravity-card">
       <div style="font-family:monospace; font-size:11px; color:var(--horror-red); margin-bottom:8px;">
@@ -1175,11 +1183,11 @@
 
   <script>
     /* =====================================================================
-       【自定义区 1：通关特典 · 我的碎碎念】
+       【自定义区 1：通关特典 · 碎碎念】
        ===================================================================== */
-    const MY_RAMBLINGS = `恭喜你解锁了这个隐藏的小角落！
+    const MY_RAMBLINGS = `恭喜你解锁了这个小角落！
 
-其实在构思这个的时候，我一边调样式一边偷偷在想，你看到那些选项和结局的时候会是什么表情和想法……会不会觉得我太奇怪了，或者是让人窒息呢？其实我单纯只是想玩带点心理恐怖的东西而已也没有真的想怎么样（）就算你真的拒绝和不喜欢我都没关系，毕竟被我这种人缠上也是怪麻烦和没招的（（不过都能看到这个了，你应该没有拒绝我对吧！真是谢谢你了喵（
+其实在构思这个的时候，因为我怕没搞好还找了一些朋友帮我测试找问题，虽然只想给你一个人看的但是我怕做的太烂了……我一边调样式一边偷偷在想，你看到那些选项和结局的时候会是什么表情和想法......会不会觉得我太奇怪了，或者是让人窒息呢？其实我单纯只是想玩带点心理恐怖的东西而已也没有真的想怎么样（）就算你真的拒绝和不喜欢我都没关系，毕竟被我这种人缠上也是怪麻烦和没招的（（不过都能看到这个了，你应该没有拒绝我对吧！真是谢谢你了喵（
 还有就是感觉做完之后再回看我的中二人格和尴尬症人格在疯狂打架。补药笑我。。。。。。我会哭的（擦不存在的眼泪ing
 `;
 
@@ -1325,7 +1333,7 @@
         tag: "# BREAKING_THE_WALL",
         cg: "“走到这里说明你的选项都没有问题哦，<br>接下来。。。”",
         speaker: "我",
-        text: "收到你的心意啦！有些话只在屏幕里敲出来总觉得不够真诚，所以……",
+        text: "谢谢你！有些话只在电子设备里输入输出总觉得不够真诚，所以……",
         next: "trigger_quest"
       },
 
@@ -1351,7 +1359,7 @@
         tag: "# HAPPY_ENDING_UNLOCKED",
         cg: "“★ TRUE END：专属协议已成功编译 ★<br>从屏幕里的代码到现实里的拥抱”",
         speaker: "我",
-        text: "谢谢你走向我！别光盯着手机屏幕啦，请看着我哦 ！♥（再次点击屏幕可返回首页查看隐藏特典）",
+        text: "谢谢你走向我！别光盯着手机屏幕啦，请看着我哦 ！♥（再次点击屏幕可返回首页）",
         next: "unlock_title_extra"
       }
     };
@@ -1377,27 +1385,48 @@
 
     function playSfx(type) {
       if (!audioEnabled || !audioCtx) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
       const now = audioCtx.currentTime;
 
       if (type === "click") {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
         osc.type = "triangle";
         osc.frequency.setValueAtTime(680, now);
         osc.frequency.exponentialRampToValueAtTime(920, now + 0.08);
         gain.gain.setValueAtTime(0.06, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(now + 0.1);
       } else if (type === "glitch") {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
         osc.type = "sawtooth";
         osc.frequency.setValueAtTime(95, now);
         osc.frequency.linearRampToValueAtTime(45, now + 0.35);
         gain.gain.setValueAtTime(0.14, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(now + 0.4);
+      } else if (type === "heavyGlitch") {
+        // 最终拒绝与红字崩溃时的双音阶重低音警报失真音效
+        [82.41, 77.78].forEach(freq => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(freq, now);
+          osc.frequency.linearRampToValueAtTime(freq * 0.48, now + 0.55);
+          gain.gain.setValueAtTime(0.16, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(now + 0.62);
+        });
       }
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(now + 0.4);
     }
 
     function toggleAudio() {
@@ -1418,7 +1447,7 @@
           osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
           gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(isHorror ? 0.04 : 0.05, audioCtx.currentTime + 0.05);
+          gain.gain.exponentialRampToValueAtTime(isHorror ? 0.045 : 0.05, audioCtx.currentTime + 0.05);
           gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
 
           osc.connect(gain);
@@ -1454,7 +1483,6 @@
         return;
       }
 
-      // 第二次点击：彻底清空本地通关记录与所有存档位
       clearTimeout(resetConfirmTimer);
       localStorage.removeItem("gal_true_end_unlocked");
       for (let i = 1; i <= 3; i++) {
@@ -1462,6 +1490,7 @@
       }
       historyLog = [];
       currentNodeId = "start";
+      hideChoices();
       document.body.classList.remove("horror-mode", "true-light-mode");
       document.getElementById("btn-ramblings").classList.remove("visible");
       document.getElementById("hud-chapter").innerText = "TITLE";
@@ -1475,6 +1504,7 @@
     function startNewGame() {
       if (!audioCtx) toggleAudio();
       playSfx("click");
+      hideChoices();
       document.getElementById("title-screen").classList.remove("active");
       historyLog = [];
       renderNode("start", false);
@@ -1482,8 +1512,8 @@
 
     function returnToTitle() {
       playSfx("click");
+      hideChoices();
       document.body.classList.remove("horror-mode");
-      document.getElementById("choice-modal").classList.remove("active");
       document.getElementById("hud-chapter").innerText = "TITLE";
       checkExtraUnlock();
       document.getElementById("title-screen").classList.add("active");
@@ -1505,6 +1535,8 @@
       currentNodeId = nodeId;
       const node = SCRIPT[nodeId];
       if (!node) return;
+
+      hideChoices();
 
       if (nodeId === "true_end") {
         localStorage.setItem("gal_true_end_unlocked", "true");
@@ -1535,7 +1567,9 @@
       }
 
       const textEl = document.getElementById("vn-text");
+      const cursorEl = document.getElementById("vn-cursor");
       textEl.innerHTML = "";
+      cursorEl.innerText = "▼ NEXT";
       isTyping = true;
       let idx = 0;
       clearInterval(typeTimer);
@@ -1546,14 +1580,16 @@
         } else {
           clearInterval(typeTimer);
           isTyping = false;
-          if (node.choices) showChoices(node.choices);
+          if (node.choices) {
+            cursorEl.innerText = "▼ 点击选择回应";
+          }
         }
       }, 38);
     }
 
     function restartFromBeginning() {
       closeSysModal();
-      document.getElementById("choice-modal").classList.remove("active");
+      hideChoices();
       document.getElementById("title-screen").classList.remove("active");
       historyLog = [];
       renderNode("start", false);
@@ -1565,16 +1601,22 @@
       playSfx("click");
 
       const node = SCRIPT[currentNodeId];
+      const cursorEl = document.getElementById("vn-cursor");
+
       if (isTyping) {
         clearInterval(typeTimer);
         document.getElementById("vn-text").innerHTML = node.text;
         isTyping = false;
-        if (node.choices) showChoices(node.choices);
+        if (node.choices) {
+          cursorEl.innerText = "▼ 点击选择回应";
+        }
         return;
       }
 
       if (node.choices) {
-        showChoices(node.choices);
+        if (!document.getElementById("choice-modal").classList.contains("active")) {
+          showChoices(node.choices);
+        }
       } else if (node.next === "trigger_quest") {
         document.getElementById("quest-modal").classList.add("active");
       } else if (node.next === "unlock_title_extra") {
@@ -1596,13 +1638,17 @@
         btn.innerHTML = `<span class="opt-diamond">◆</span><span>${c.text}</span>`;
         btn.onclick = () => {
           playSfx("click");
-          modal.classList.remove("active");
+          hideChoices();
           if (c.action === "openLoad") {
             openSysModal("load");
           } else if (c.action === "restartGame") {
             restartFromBeginning();
           } else if (c.action === "finalGravity") {
-            playSfx("glitch");
+            // 同步开启全局恐怖模式，使背景音乐切换为低频压抑旋律并播放重低音故障声
+            document.body.classList.add("horror-mode");
+            document.getElementById("hud-chapter").innerText = "ERR // GRAVITY_LOCK";
+            document.getElementById("hud-divergence").innerText = "-99.9999%";
+            playSfx("heavyGlitch");
             document.getElementById("gravity-final").classList.add("active");
           } else if (c.next) {
             renderNode(c.next);
@@ -1611,7 +1657,14 @@
         list.appendChild(btn);
       });
 
+      document.body.classList.add("choices-open");
       modal.classList.add("active");
+      document.getElementById("vn-cursor").innerText = "▲ 请在上方选择";
+    }
+
+    function hideChoices() {
+      document.body.classList.remove("choices-open");
+      document.getElementById("choice-modal").classList.remove("active");
     }
 
     /* ================= 现实下楼任务解锁 ================= */
@@ -1673,8 +1726,8 @@
               }
               const wasHorror = document.body.classList.contains("horror-mode");
               closeSysModal();
+              hideChoices();
               document.getElementById("title-screen").classList.remove("active");
-              document.getElementById("choice-modal").classList.remove("active");
               renderNode(data.nodeId, true);
               if (wasHorror) {
                 showToast("世界线已回溯……这次不许再选错了哦♥");
@@ -1710,7 +1763,8 @@
 
     /* ================= 终极重力红字刷屏 ================= */
     function unleashRedFlood() {
-      playSfx("glitch");
+      document.body.classList.add("horror-mode");
+      playSfx("heavyGlitch");
       const flood = document.getElementById("red-flood");
       const rewind = document.getElementById("rewind-btn");
       flood.style.display = "block";
@@ -1725,6 +1779,9 @@
           s.style.fontSize = (Math.floor(Math.random() * 14) + 15) + "px";
           s.style.opacity = (Math.random() * 0.4 + 0.6).toFixed(2);
           flood.appendChild(s);
+        }
+        if (step % 8 === 0) {
+          playSfx("glitch");
         }
         step++;
         if (step > 45) {
